@@ -1,1 +1,229 @@
-netlify.app
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#f7e8e5">
+  <meta name="description" content="Invitation to Ellen Nalungwe's Bridal Shower — 25 October 2026 at Kuema Events, New Kasama, Lusaka.">
+  <title>Ellen Nalungwe | Bridal Shower</title>
+
+  <style>
+    :root {
+      --rose: #9d3945;
+      --gold: #a56d19;
+      --cream: #fffaf5;
+      --soft: #f8e7e3;
+      --ink: #201a19;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--cream);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(214, 151, 145, .18), transparent 28%),
+        radial-gradient(circle at 90% 90%, rgba(214, 151, 145, .18), transparent 28%),
+        var(--cream);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card-wrap {
+      width: min(100%, 720px);
+      position: relative;
+    }
+
+    .invitation {
+      width: 100%;
+      display: block;
+      height: auto;
+      border-radius: 18px;
+      box-shadow:
+        0 18px 60px rgba(78, 39, 35, .18),
+        0 3px 12px rgba(78, 39, 35, .10);
+    }
+
+    .details {
+      margin: 22px 0 0;
+      padding: 24px 20px 28px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(165,109,25,.25);
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 10px 35px rgba(78,39,35,.08);
+    }
+
+    .details h1 {
+      margin: 0 0 8px;
+      color: var(--rose);
+      font-size: clamp(28px, 7vw, 44px);
+      line-height: 1.1;
+    }
+
+    .details .subtitle {
+      margin: 0 0 20px;
+      font-size: clamp(17px, 4.5vw, 21px);
+      line-height: 1.5;
+    }
+
+    .info-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+    }
+
+    .info {
+      padding: 17px 14px;
+      background: var(--soft);
+      border-radius: 14px;
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .value {
+      display: block;
+      color: var(--ink);
+      font-size: clamp(19px, 5vw, 24px);
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .rsvp {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      background: var(--rose);
+      color: white;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      box-shadow: 0 8px 20px rgba(157,57,69,.22);
+    }
+
+    .rsvp:focus-visible,
+    .rsvp:hover {
+      outline: 3px solid rgba(165,109,25,.45);
+      outline-offset: 3px;
+    }
+
+    .footer {
+      padding: 24px 10px 10px;
+      text-align: center;
+      color: #6d5c59;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        padding: 10px;
+      }
+
+      .invitation {
+        border-radius: 12px;
+      }
+
+      .details {
+        margin-top: 14px;
+        padding: 22px 14px 24px;
+        border-radius: 14px;
+      }
+    }
+
+    @media (min-width: 700px) {
+      .page {
+        padding: 40px 24px 60px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .info:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="card-wrap">
+
+      <!-- The invitation card -->
+      <img
+        class="invitation"
+        src="assets/invitation-card.png"
+        alt="Ellen Nalungwe Bridal Shower invitation. 25 October 2026 at Kuema Events, New Kasama, Lusaka. RSVP 0777005370 or +260 976 532 982."
+      >
+
+      <!-- Large, readable HTML details underneath the artwork -->
+      <section class="details" aria-label="Bridal shower details">
+        <h1>Ellen Nalungwe</h1>
+        <p class="subtitle">You are warmly invited to celebrate the bride-to-be.</p>
+
+        <div class="info-grid">
+          <div class="info">
+            <span class="label">Date</span>
+            <span class="value">25 October 2026</span>
+          </div>
+
+          <div class="info">
+            <span class="label">Venue</span>
+            <span class="value">Kuema Events<br>New Kasama, Lusaka</span>
+          </div>
+
+          <div class="info">
+            <span class="label">RSVP</span>
+            <span class="value">+260777005370<br>+260 976 532 982</span>
+          </div>
+        </div>
+
+        <a class="rsvp" href="tel:+260777005370">Call to RSVP</a>
+      </section>
+
+      <div class="footer">
+        Come dressed to celebrate, laugh, love and make beautiful memories with the bride-to-be. 🤍
+      </div>
+
+    </div>
+  </main>
+</body>
+</html>
