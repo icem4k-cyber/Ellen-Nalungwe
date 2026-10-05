@@ -9,6 +9,7 @@
      panel, echoing the engraved look of a pressed paper invitation. */
   :root{
     --bg:#f6efe4;
+    --surround:#e4d9c6;
     --card:#fffcf6;
     --ink:#4b3a2f;
     --ink-soft:#8a7362;
@@ -22,26 +23,52 @@
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg:#211a14; --card:#2a2119; --ink:#f1e6d8; --ink-soft:#c7b29c;
+      --bg:#211a14; --surround:#140f0b; --card:#2a2119; --ink:#f1e6d8; --ink-soft:#c7b29c;
       --gold:#d8bd8d; --gold-soft:#8a6c3f; --rose:#d1a39c; --line:#4a3b2a;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"]{
-    --bg:#211a14; --card:#2a2119; --ink:#f1e6d8; --ink-soft:#c7b29c;
+    --bg:#211a14; --surround:#140f0b; --card:#2a2119; --ink:#f1e6d8; --ink-soft:#c7b29c;
     --gold:#d8bd8d; --gold-soft:#8a6c3f; --rose:#d1a39c; --line:#4a3b2a;
     color-scheme: dark;
   }
 
   *{box-sizing:border-box}
   body{
-    background:var(--bg);
+    background:var(--surround);
     color:var(--ink);
     font-family:var(--body);
     margin:0;
+    min-height:100dvh;
     -webkit-tap-highlight-color: transparent;
+    display:flex;
+    justify-content:center;
   }
   img{max-width:100%}
+
+  /* Phone-width app column: on a narrow (mobile) screen this is simply
+     the page; on a wide screen it stays pinned to mobile proportions in
+     the middle, with the surrounding colour filling the rest, so the
+     design is never stretched across a desktop window. */
+  .app{
+    width:100%;
+    max-width:460px;
+    min-height:100dvh;
+    background:var(--bg);
+    position:relative;
+    overflow:hidden;
+  }
+  @media (min-width:620px){
+    body{padding-block:32px}
+    .app{
+      min-height:min(860px,calc(100dvh - 64px));
+      border-radius:22px;
+      box-shadow:0 30px 70px -30px rgba(0,0,0,.45);
+      border:1px solid var(--line);
+    }
+  }
+
   .wrap{
     max-width:460px;
     margin:0 auto;
@@ -51,7 +78,7 @@
 
   /* ---------- Opening card (cover) ---------- */
   #cover{
-    position:fixed;
+    position:absolute;
     inset:0;
     z-index:50;
     display:flex;
@@ -404,6 +431,7 @@
   }
 </style>
 
+<div class="app">
 <div id="cover" role="button" aria-label="Open invitation" tabindex="0">
   <div class="card-stage" id="cardStage">
     <div class="door left">
@@ -533,6 +561,7 @@
 
     </div>
   </div>
+</div>
 </div>
 
 <script>
