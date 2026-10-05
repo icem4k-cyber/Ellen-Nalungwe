@@ -499,6 +499,178 @@
     .cover-hint{animation:none}
     .step{transition:none}
   }
+
+
+/* =========================================================
+   MOBILE READABILITY OVERRIDE — v3
+   Deliberately uses fixed minimum sizes instead of viewport/container
+   calculations so the invitation remains readable on small screens.
+   ========================================================= */
+@media (max-width: 600px){
+  .app{
+    width:100vw !important;
+    height:100dvh !important;
+    max-width:none !important;
+    max-height:none !important;
+    border-radius:0 !important;
+  }
+
+  .frame{
+    padding:32px 28px 24px !important;
+  }
+
+  .step{
+    padding:24px 4px !important;
+  }
+
+  .eyebrow{
+    font-size:20px !important;
+    line-height:1.25 !important;
+    letter-spacing:.20em !important;
+  }
+
+  .headline{
+    font-size:82px !important;
+    line-height:.95 !important;
+    margin:12px 0 18px !important;
+  }
+
+  .sub{
+    font-size:17px !important;
+    line-height:1.4 !important;
+    letter-spacing:.18em !important;
+  }
+
+  .honoree{
+    font-size:46px !important;
+    line-height:1.1 !important;
+  }
+
+  .blurb{
+    font-size:20px !important;
+    line-height:1.55 !important;
+    max-width:25ch !important;
+  }
+
+  .divider{
+    width:85% !important;
+    margin:28px auto !important;
+  }
+
+  .countdown{
+    gap:10px !important;
+    margin:24px 0 18px !important;
+  }
+
+  .cd-unit{
+    min-width:68px !important;
+  }
+
+  .cd-num{
+    font-size:52px !important;
+  }
+
+  .cd-label{
+    font-size:14px !important;
+    letter-spacing:.12em !important;
+  }
+
+  .label{
+    font-size:19px !important;
+    margin-bottom:18px !important;
+  }
+
+  .value{
+    font-size:40px !important;
+    line-height:1.2 !important;
+  }
+
+  .step-icon{
+    width:60px !important;
+    height:60px !important;
+    margin-bottom:22px !important;
+  }
+
+  .note{
+    font-size:20px !important;
+    line-height:1.55 !important;
+    max-width:27ch !important;
+    margin:18px 0 30px !important;
+  }
+
+  .phones{
+    width:100% !important;
+    max-width:500px !important;
+    gap:16px !important;
+  }
+
+  .phone-row{
+    min-height:76px !important;
+    padding:14px 14px 14px 24px !important;
+    border-radius:40px !important;
+    gap:14px !important;
+  }
+
+  .phone-row .who{
+    font-size:13px !important;
+    line-height:1.2 !important;
+    margin-bottom:6px !important;
+  }
+
+  .phone-row .num{
+    font-size:28px !important;
+    line-height:1.15 !important;
+    letter-spacing:.01em !important;
+    white-space:nowrap !important;
+  }
+
+  .copy-btn{
+    min-width:72px !important;
+    min-height:48px !important;
+    padding:10px 14px !important;
+    font-size:15px !important;
+    letter-spacing:.08em !important;
+  }
+
+  .alt-note{
+    font-size:16px !important;
+    margin:34px 0 0 !important;
+  }
+
+  .link-btn{
+    font-size:17px !important;
+    min-height:52px !important;
+    padding:15px 30px !important;
+    margin-top:16px !important;
+  }
+
+  .nav{
+    margin-top:22px !important;
+  }
+
+  .next-btn{
+    font-size:17px !important;
+    min-height:54px !important;
+    padding:15px 42px !important;
+  }
+
+  .back-btn{
+    font-size:15px !important;
+    min-height:44px !important;
+  }
+}
+
+/* Extra-small phones: preserve readability rather than shrinking text. */
+@media (max-width:380px){
+  .frame{padding-left:20px !important;padding-right:20px !important;}
+  .phone-row{padding-left:18px !important;}
+  .phone-row .num{font-size:24px !important;}
+  .copy-btn{min-width:66px !important;padding-left:10px !important;padding-right:10px !important;}
+  .headline{font-size:72px !important;}
+  .honoree{font-size:40px !important;}
+  .blurb,.note{font-size:18px !important;}
+}
+
 </style>
 
 <div class="app">
