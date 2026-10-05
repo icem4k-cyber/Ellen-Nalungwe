@@ -637,6 +637,42 @@
       margin-top: 8px;
     }
 
+    .maps-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      margin: 14px auto 0;
+      padding: 10px 18px;
+      border: 1px solid rgba(180, 122, 36, .45);
+      border-radius: 999px;
+      background: rgba(255, 250, 246, .92);
+      color: var(--rose-dark);
+      font-family: "Montserrat", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 5px 14px rgba(75, 45, 35, .08);
+      transition: transform .18s ease, background .18s ease;
+    }
+
+    .maps-btn:hover {
+      transform: translateY(-1px);
+      background: #fff;
+    }
+
+    .maps-btn:active {
+      transform: translateY(0);
+    }
+
+    .maps-btn:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
     /* RSVP */
     .rsvp-heading {
       font-family: "Cormorant Garamond", serif;
@@ -999,6 +1035,14 @@
 
           <div class="venue-name">Kuema Events</div>
           <div class="venue-location">New Kasama</div>
+
+          <a
+            class="maps-btn"
+            href="https://www.google.com/maps/search/?api=1&query=Kuema+Events+New+Kasama+Lusaka"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Kuema Events in Google Maps"
+          >📍 OPEN IN GOOGLE MAPS</a>
 
           <div class="ornament">♡</div>
         </div>
