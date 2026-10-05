@@ -313,9 +313,94 @@
     margin-top:6px;
   }
 
+  /* ---------- Stepper ---------- */
+  .stepper{
+    position:relative;
+    min-height:430px;
+  }
+  .step{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    transform:translateX(14px);
+    pointer-events:none;
+    transition:opacity .45s ease, transform .45s ease;
+  }
+  .step.active{
+    position:relative;
+    opacity:1;
+    transform:translateX(0);
+    pointer-events:auto;
+  }
+  .step.leaving{
+    transform:translateX(-14px);
+  }
+
+  .dots{
+    display:flex;
+    justify-content:center;
+    gap:7px;
+    margin-bottom:26px;
+  }
+  .dots span{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--line);
+    transition:background .3s ease, transform .3s ease;
+  }
+  .dots span.on{background:var(--gold);transform:scale(1.2)}
+
+  .step-icon{width:30px;height:30px;color:var(--gold);margin-bottom:14px}
+
+  .nav{
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+  }
+  .next-btn{
+    font-family:var(--body);
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--card);
+    background:var(--gold);
+    border:none;
+    border-radius:30px;
+    padding:13px 34px;
+    cursor:pointer;
+    transition:opacity .2s ease, transform .15s ease;
+  }
+  .next-btn:active{transform:scale(.97)}
+  .link-btn{
+    display:inline-block;
+    font-family:var(--body);
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--gold);
+    background:transparent;
+    border:1px solid var(--gold);
+    border-radius:30px;
+    padding:12px 28px;
+    text-decoration:none;
+    margin-top:14px;
+    transition:background .2s ease,color .2s ease;
+  }
+  .link-btn:hover{background:var(--gold);color:var(--card)}
+  .alt-note{
+    font-size:11px;
+    letter-spacing:.08em;
+    color:var(--ink-soft);
+    margin:22px 0 0;
+  }
+
   @media (prefers-reduced-motion:reduce){
     .door{transition:none}
     .cover-hint{animation:none}
+    .step{transition:none}
   }
 </style>
 
@@ -381,56 +466,71 @@
         <ellipse cx="24" cy="10" rx="3.5" ry="6" transform="rotate(-55 24 10)"/>
       </svg>
 
-      <p class="eyebrow">You're invited to a</p>
-      <h1 class="headline">Bridal Shower</h1>
-      <p class="sub">honouring the bride&#8209;to&#8209;be</p>
-
-      <div class="divider">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2c3 4 3 8 0 20M12 2c-3 4-3 8 0 20"/></svg>
+      <div class="dots" id="dots">
+        <span class="on"></span><span></span><span></span><span></span>
       </div>
 
-      <h2 class="honoree">Ellen Nalungwe</h2>
-      <p class="blurb">Please join us for an afternoon of love, laughter and well wishes as Ellen prepares for her wedding day.</p>
+      <div class="stepper" id="stepper">
 
-      <div class="countdown" id="countdown">
-        <div class="cd-unit"><div class="cd-num" id="cd-days">00</div><div class="cd-label">Days</div></div>
-        <div class="cd-unit"><div class="cd-num" id="cd-hours">00</div><div class="cd-label">Hours</div></div>
-        <div class="cd-unit"><div class="cd-num" id="cd-mins">00</div><div class="cd-label">Mins</div></div>
-        <div class="cd-unit"><div class="cd-num" id="cd-secs">00</div><div class="cd-label">Secs</div></div>
-      </div>
+        <!-- Step 1: intro -->
+        <section class="step active" data-step="0">
+          <p class="eyebrow">You're invited to a</p>
+          <h1 class="headline">Bridal Shower</h1>
+          <p class="sub">honouring the bride&#8209;to&#8209;be</p>
+          <div class="divider">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2c3 4 3 8 0 20M12 2c-3 4-3 8 0 20"/></svg>
+          </div>
+          <h2 class="honoree">Ellen Nalungwe</h2>
+          <p class="blurb">Please join us for an afternoon of love, laughter and well wishes as Ellen prepares for her wedding day.</p>
+        </section>
 
-      <div class="details">
-        <div class="detail">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3.5" y="5" width="17" height="16" rx="1.5"/><path d="M3.5 9.5h17"/><path d="M8 3v4M16 3v4"/><circle cx="8" cy="14" r="1"/><circle cx="12" cy="14" r="1"/><circle cx="16" cy="14" r="1"/></svg>
+        <!-- Step 2: countdown + date -->
+        <section class="step" data-step="1">
+          <div class="countdown" id="countdown">
+            <div class="cd-unit"><div class="cd-num" id="cd-days">00</div><div class="cd-label">Days</div></div>
+            <div class="cd-unit"><div class="cd-num" id="cd-hours">00</div><div class="cd-label">Hours</div></div>
+            <div class="cd-unit"><div class="cd-num" id="cd-mins">00</div><div class="cd-label">Mins</div></div>
+            <div class="cd-unit"><div class="cd-num" id="cd-secs">00</div><div class="cd-label">Secs</div></div>
+          </div>
+          <div class="divider" style="margin-top:28px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2c3 4 3 8 0 20M12 2c-3 4-3 8 0 20"/></svg>
+          </div>
           <p class="label">Date</p>
-          <p class="value">Sunday, 25 October 2026</p>
-        </div>
-        <div class="detail">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 21s7-6.2 7-11.5A7 7 0 1 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
-          <p class="label">Venue</p>
-          <p class="value">Kuema Events<small>New Kasama</small></p>
-        </div>
+          <p class="value" style="font-size:24px">Sunday, 25 October 2026</p>
+        </section>
+
+        <!-- Step 3: venue -->
+        <section class="step" data-step="2">
+          <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 21s7-6.2 7-11.5A7 7 0 1 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
+          <p class="eyebrow">Venue</p>
+          <h2 class="honoree" style="font-size:30px;margin-top:6px">Kuema Events</h2>
+          <p class="blurb">New Kasama</p>
+        </section>
+
+        <!-- Step 4: RSVP -->
+        <section class="step" data-step="3">
+          <p class="eyebrow">Kindly RSVP</p>
+          <p class="note" style="max-width:30ch">Your presence will make the day even more special &mdash; let us know you're coming by calling or messaging:</p>
+          <div class="phones">
+            <div class="phone-row">
+              <div><span class="who">RSVP line</span><span class="num">0777 005 370</span></div>
+              <button class="copy-btn" data-num="0777005370">Copy</button>
+            </div>
+            <div class="phone-row">
+              <div><span class="who">RSVP line</span><span class="num">+260 976 532 982</span></div>
+              <button class="copy-btn" data-num="+260976532982">Copy</button>
+            </div>
+          </div>
+          <p class="alt-note">or RSVP online instead</p>
+          <a class="link-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeaEP9ZFUWH4zzU8LJqW36fPW30AqpWXhSxcfX3S8BjaTZSCg/viewform?usp=dialog" target="_blank" rel="noopener">Open RSVP Form</a>
+        </section>
+
       </div>
 
-      <div class="rsvp">
-        <p class="eyebrow" style="margin-bottom:10px">Kindly RSVP</p>
-        <p class="note">Your presence will make the day even more special &mdash; let us know you're coming by calling or messaging:</p>
-        <div class="phones">
-          <div class="phone-row">
-            <div><span class="who">RSVP line</span><span class="num">0777 005 370</span></div>
-            <button class="copy-btn" data-num="0777005370">Copy</button>
-          </div>
-          <div class="phone-row">
-            <div><span class="who">RSVP line</span><span class="num">+260 976 532 982</span></div>
-            <button class="copy-btn" data-num="+260976532982">Copy</button>
-          </div>
-        </div>
+      <div class="nav">
+        <button class="next-btn" id="nextBtn">Next</button>
       </div>
 
-      <footer>
-        <div class="sign">With love</div>
-        <div class="names">Can't wait to celebrate with you</div>
-      </footer>
     </div>
   </div>
 </div>
@@ -452,6 +552,28 @@
   cover.addEventListener('click', openCard);
   cover.addEventListener('keydown', function(e){
     if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openCard(); }
+  });
+
+  // Step navigation
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var dots = Array.prototype.slice.call(document.querySelectorAll('#dots span'));
+  var nextBtn = document.getElementById('nextBtn');
+  var current = 0;
+
+  function goTo(index){
+    if(index === current) return;
+    steps[current].classList.add('leaving');
+    steps[current].classList.remove('active');
+    dots[current].classList.remove('on');
+    setTimeout(function(){ steps[current].classList.remove('leaving'); }, 460);
+    current = index;
+    steps[current].classList.add('active');
+    dots[current].classList.add('on');
+    nextBtn.hidden = current === steps.length - 1;
+  }
+
+  nextBtn.addEventListener('click', function(){
+    if(current < steps.length - 1){ goTo(current + 1); }
   });
 
   // Countdown to 25 Oct 2026, 00:00 Africa/Lusaka (UTC+2)
