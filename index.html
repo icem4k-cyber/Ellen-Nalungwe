@@ -43,28 +43,30 @@
     min-height:100dvh;
     -webkit-tap-highlight-color: transparent;
     display:flex;
+    align-items:center;
     justify-content:center;
   }
   img{max-width:100%}
 
-  /* Phone-width app column: on a narrow (mobile) screen this is simply
-     the page; on a wide screen it stays pinned to mobile proportions in
-     the middle, with the surrounding colour filling the rest, so the
-     design is never stretched across a desktop window. */
+  /* Fixed 9:16 vertical frame (1080x1920 proportions), always whole and
+     centred: it scales to fill the viewport by width or by height,
+     whichever is the limiting dimension, with the surround colour
+     filling any leftover strip instead of stretching the design. */
   .app{
-    width:100%;
-    max-width:460px;
-    min-height:100dvh;
+    width:min(100vw,calc(100dvh * 9 / 16));
+    height:min(100dvh,calc(100vw * 16 / 9));
+    aspect-ratio:9/16;
     background:var(--bg);
     position:relative;
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    box-shadow:0 30px 70px -30px rgba(0,0,0,.45);
   }
+  .app.unlocked{overflow-y:auto}
   @media (min-width:620px){
-    body{padding-block:32px}
     .app{
-      min-height:min(860px,calc(100dvh - 64px));
       border-radius:22px;
-      box-shadow:0 30px 70px -30px rgba(0,0,0,.45);
       border:1px solid var(--line);
     }
   }
@@ -577,6 +579,7 @@
     opened = true;
     stage.classList.add('open');
     content.classList.add('show');
+    document.querySelector('.app').classList.add('unlocked');
     setTimeout(function(){ cover.classList.add('hidden'); }, 1150);
   }
   cover.addEventListener('click', openCard);
