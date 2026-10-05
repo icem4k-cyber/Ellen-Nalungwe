@@ -486,6 +486,17 @@
       line-height: 1.35;
     }
 
+    .bride-photo {
+      display: block;
+      width: min(78%, 255px);
+      height: auto;
+      max-height: 205px;
+      margin: 12px auto 4px;
+      object-fit: contain;
+      object-position: center;
+      filter: drop-shadow(0 8px 12px rgba(75, 45, 35, .14));
+    }
+
     .ornament {
       display: flex;
       align-items: center;
@@ -974,6 +985,12 @@
           <div class="name">Dr Ellen Nalungwe</div>
 
           <div class="subheading bride-label">bride-to-be</div>
+
+          <img
+            class="bride-photo"
+            src="bride-photo.png"
+            alt="Dr Ellen Nalungwe, the bride-to-be"
+          />
 
           <div class="ornament">♡</div>
         </div>
