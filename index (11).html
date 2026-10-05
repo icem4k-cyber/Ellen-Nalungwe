@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8eee9">
+  <title>Ellen Nalungwe — Bridal Shower</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600;700&display=swap');
+
+    :root {
+      --cream: #fffaf6;
+      --cream-2: #f8eee8;
+      --rose: #b95161;
+      --rose-dark: #963c4d;
+      --gold: #b47a24;
+      --text: #302322;
+      --muted: #766461;
+      --white: #ffffff;
+      --border: rgba(180, 122, 36, 0.32);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(241, 184, 185, .22), transparent 28%),
+        radial-gradient(circle at 85% 85%, rgba(220, 160, 155, .18), transparent 30%),
+        var(--cream-2);
+      color: var(--text);
+      font-family: "Montserrat", sans-serif;
+      overflow-x: hidden;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .card-shell {
+      position: relative;
+      width: min(100%, 520px);
+      min-height: min(900px, calc(100vh - 36px));
+      max-height: 900px;
+      overflow: hidden;
+      border: 1px solid rgba(180, 122, 36, .42);
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.72), rgba(255,248,244,.95)),
+        var(--cream);
+      box-shadow: 0 22px 60px rgba(100, 54, 45, .16);
+    }
+
+    .page {
+      position: absolute;
+      inset: 0;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 54px 32px 28px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(35px);
+      transition:
+        opacity .42s ease,
+        transform .42s ease,
+        visibility .42s ease;
+      overflow: hidden;
+    }
+
+    .page.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+      z-index: 2;
+    }
+
+    .page.previous {
+      transform: translateX(-35px);
+    }
+
+    /* Soft watercolor-like decoration */
+    .wash {
+      position: absolute;
+      width: 260px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(239, 184, 179, .22);
+      filter: blur(18px);
+      pointer-events: none;
+    }
+
+    .wash.top {
+      top: -70px;
+      left: -90px;
+      transform: rotate(-20deg);
+    }
+
+    .wash.bottom {
+      bottom: -80px;
+      right: -90px;
+      transform: rotate(20deg);
+    }
+
+    .flower {
+      position: absolute;
+      font-size: 68px;
+      line-height: 1;
+      opacity: .88;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .flower.top-left {
+      top: 4px;
+      left: 2px;
+      transform: rotate(-18deg);
+    }
+
+    .flower.top-right {
+      top: 0;
+      right: -3px;
+      transform: rotate(18deg);
+    }
+
+    .flower.bottom-left {
+      bottom: 0;
+      left: -4px;
+      transform: rotate(15deg);
+    }
+
+    .flower.bottom-right {
+      bottom: 0;
+      right: 0;
+      transform: rotate(-14deg);
+    }
+
+    .leaf {
+      position: absolute;
+      color: #6e8060;
+      font-size: 54px;
+      opacity: .55;
+      pointer-events: none;
+    }
+
+    .leaf.l1 { top: 55px; left: 8px; transform: rotate(-35deg); }
+    .leaf.l2 { top: 45px; right: 10px; transform: rotate(38deg); }
+    .leaf.l3 { bottom: 92px; left: 15px; transform: rotate(-65deg); }
+    .leaf.l4 { bottom: 74px; right: 12px; transform: rotate(55deg); }
+
+    .content {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .script {
+      font-family: "Great Vibes", cursive;
+      color: var(--rose);
+      font-size: clamp(58px, 15vw, 88px);
+      line-height: .9;
+      font-weight: 400;
+    }
+
+    .title {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      color: var(--gold);
+      font-size: clamp(48px, 12vw, 72px);
+      line-height: .9;
+      margin-top: -4px;
+    }
+
+    .subheading {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 23px;
+      margin-top: 20px;
+    }
+
+    .name {
+      font-family: "Great Vibes", cursive;
+      color: var(--rose-dark);
+      font-size: clamp(47px, 11vw, 70px);
+      line-height: 1;
+      margin-top: 18px;
+    }
+
+    .body-copy {
+      max-width: 390px;
+      margin: 25px auto 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      color: var(--gold);
+      margin: 18px auto;
+      font-size: 22px;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      width: 70px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .page-footer {
+      position: relative;
+      z-index: 4;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .next-btn,
+    .online-btn {
+      border: none;
+      border-radius: 999px;
+      min-height: 54px;
+      padding: 0 30px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .next-btn {
+      width: min(100%, 290px);
+      color: white;
+      background: linear-gradient(135deg, #c45e6c, #ae4b5b);
+      box-shadow: 0 10px 25px rgba(174, 75, 91, .24);
+    }
+
+    .next-btn:hover,
+    .online-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .next-btn:active,
+    .online-btn:active {
+      transform: translateY(0);
+    }
+
+    .next-btn:focus-visible,
+    .copy-btn:focus-visible,
+    .online-btn:focus-visible {
+      outline: 3px solid rgba(180, 122, 36, .35);
+      outline-offset: 3px;
+    }
+
+    /* Countdown */
+    .page-label {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 18px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(42px, 10vw, 62px);
+      letter-spacing: .08em;
+      line-height: 1;
+      font-weight: 500;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 42px 0 30px;
+    }
+
+    .time-box {
+      background: rgba(244, 205, 199, .35);
+      border-radius: 16px;
+      padding: 14px 4px 12px;
+      min-width: 0;
+    }
+
+    .time-number {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      color: var(--rose-dark);
+      font-size: clamp(32px, 8vw, 50px);
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .time-label {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 15px;
+      margin-top: 7px;
+    }
+
+    .date-icon,
+    .venue-icon {
+      font-size: 45px;
+      color: var(--gold);
+      margin: 4px 0 8px;
+    }
+
+    .date-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 24px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .date-value {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(32px, 8vw, 45px);
+      line-height: 1.05;
+      color: #352725;
+    }
+
+    /* Venue */
+    .venue-image {
+      width: min(100%, 370px);
+      aspect-ratio: 1.55 / 1;
+      margin: 25px auto 22px;
+      border-radius: 18px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(219, 173, 159, .35), rgba(255, 250, 246, .65)),
+        repeating-linear-gradient(25deg, rgba(180,122,36,.08) 0 2px, transparent 2px 12px);
+      border: 1px solid rgba(180, 122, 36, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .venue-placeholder {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 18px;
+      color: var(--muted);
+      padding: 20px;
+    }
+
+    .venue-name {
+      font-family: "Cormorant Garamond", serif;
+      color: var(--rose-dark);
+      font-size: clamp(39px, 9vw, 53px);
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .venue-location {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 31px;
+      margin-top: 8px;
+    }
+
+    /* RSVP */
+    .rsvp-heading {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(54px, 13vw, 76px);
+      color: var(--rose-dark);
+      line-height: .9;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .rsvp-copy {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 20px;
+      line-height: 1.3;
+      max-width: 390px;
+      margin: 24px auto;
+    }
+
+    .phone-list {
+      display: grid;
+      gap: 13px;
+      width: 100%;
+      max-width: 410px;
+      margin: 0 auto 18px;
+    }
+
+    .phone-row {
+      display: grid;
+      grid-template-columns: 42px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .phone-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #f6dcd7;
+      color: var(--rose-dark);
+      font-size: 20px;
+    }
+
+    .phone-meta {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .phone-number {
+      display: block;
+      color: var(--text);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      line-height: 1.05;
+      margin-top: 2px;
+    }
+
+    .copy-btn {
+      border: none;
+      border-radius: 999px;
+      background: #bd5c68;
+      color: #fff;
+      padding: 10px 17px;
+      min-height: 40px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+
+    .online-note {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 19px;
+      line-height: 1.15;
+      margin: 12px auto 12px;
+    }
+
+    .online-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: min(100%, 300px);
+      background: linear-gradient(135deg, #c98a30, #ae741f);
+      color: white;
+      box-shadow: 0 10px 25px rgba(174, 116, 31, .22);
+      text-decoration: none;
+    }
+
+    .closing {
+      font-family: "Great Vibes", cursive;
+      color: #3c302e;
+      font-size: 30px;
+      margin-top: 14px;
+      line-height: 1.05;
+    }
+
+    .toast {
+      position: absolute;
+      left: 50%;
+      bottom: 96px;
+      z-index: 10;
+      transform: translateX(-50%) translateY(10px);
+      background: #3c302e;
+      color: #fff;
+      padding: 9px 15px;
+      border-radius: 999px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s ease, transform .22s ease;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .progress {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 8;
+      display: flex;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(185, 81, 97, .22);
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .dot.active {
+      background: var(--rose);
+      transform: scale(1.25);
+    }
+
+    @media (max-width: 420px) {
+      .app {
+        padding: 8px;
+      }
+
+      .card-shell {
+        min-height: calc(100vh - 16px);
+        border-radius: 18px;
+      }
+
+      .page {
+        padding: 48px 20px 22px;
+      }
+
+      .body-copy {
+        font-size: 20px;
+      }
+
+      .countdown {
+        gap: 5px;
+        margin-top: 30px;
+      }
+
+      .time-box {
+        padding: 12px 2px 10px;
+      }
+
+      .time-number {
+        font-size: 31px;
+      }
+
+      .time-label {
+        font-size: 13px;
+      }
+
+      .flower {
+        font-size: 52px;
+      }
+
+      .phone-row {
+        grid-template-columns: 38px 1fr auto;
+        gap: 7px;
+      }
+
+      .phone-icon {
+        width: 38px;
+        height: 38px;
+      }
+
+      .phone-number {
+        font-size: 19px;
+      }
+
+      .copy-btn {
+        padding: 9px 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page,
+      .next-btn,
+      .online-btn,
+      .toast,
+      .dot {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app">
+    <section class="card-shell" aria-label="Ellen Nalungwe bridal shower invitation">
+
+      <div class="progress" aria-label="Invitation page progress">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+
+      <!-- PAGE 1 -->
+      <section class="page active" data-page="0" aria-label="Invitation">
+        <div class="wash top"></div>
+        <div class="wash bottom"></div>
+        <div class="flower top-left">🌸</div>
+        <div class="flower bottom-left">🌹</div>
+        <div class="leaf l1">❧</div>
+        <div class="leaf l3">❧</div>
+
+        <div class="content">
+          <div class="eyebrow">You're invited to a</div>
+
+          <div class="script">Bridal</div>
+          <div class="title">Shower</div>
+
+          <div class="subheading">honouring the bride-to-be</div>
+
+          <div class="name">Ellen Nalungwe</div>
+
+          <div class="ornament">♡</div>
+
+          <p class="body-copy">
+            Please join us for an afternoon of love, laughter and well wishes
+            as Ellen prepares for her wedding day.
+          </p>
+        </div>
+
+        <div class="page-footer">
+          <button class="next-btn" type="button">NEXT&nbsp; →</button>
+        </div>
+      </section>
+
+      <!-- PAGE 2 -->
+      <section class="page" data-page="1" aria-label="Date">
+        <div class="wash top"></div>
+        <div class="wash bottom"></div>
+        <div class="flower top-right">🌹</div>
+        <div class="flower bottom-left">🌸</div>
+        <div class="leaf l2">❧</div>
+        <div class="leaf l4">❧</div>
+
+        <div class="content">
+          <div class="ornament">♡</div>
+          <div class="section-title">COUNTDOWN<br>TO THE DAY</div>
+
+          <div class="countdown" aria-live="polite">
+            <div class="time-box">
+              <span class="time-number" id="days">--</span>
+              <span class="time-label">Days</span>
+            </div>
+            <div class="time-box">
+              <span class="time-number" id="hours">--</span>
+              <span class="time-label">Hours</span>
+            </div>
+            <div class="time-box">
+              <span class="time-number" id="minutes">--</span>
+              <span class="time-label">Mins</span>
+            </div>
+            <div class="time-box">
+              <span class="time-number" id="seconds">--</span>
+              <span class="time-label">Secs</span>
+            </div>
+          </div>
+
+          <div class="ornament">♡</div>
+
+          <div class="date-icon" aria-hidden="true">▣</div>
+          <div class="date-title">Date</div>
+
+          <div class="date-value">
+            Sunday,<br>
+            25 October 2026
+          </div>
+        </div>
+
+        <div class="page-footer">
+          <button class="next-btn" type="button">NEXT&nbsp; →</button>
+        </div>
+      </section>
+
+      <!-- PAGE 3 -->
+      <section class="page" data-page="2" aria-label="Venue">
+        <div class="wash top"></div>
+        <div class="wash bottom"></div>
+        <div class="flower top-right">🌸</div>
+        <div class="flower bottom-right">🌹</div>
+        <div class="leaf l2">❧</div>
+        <div class="leaf l3">❧</div>
+
+        <div class="content">
+          <div class="section-title">VENUE</div>
+          <div class="ornament">♡</div>
+
+          <div class="venue-icon" aria-hidden="true">⌖</div>
+
+          <div class="venue-image">
+            <div class="venue-placeholder">
+              ✦<br><br>
+              Kuema Events<br>
+              <small>New Kasama</small>
+            </div>
+          </div>
+
+          <div class="venue-name">Kuema Events</div>
+          <div class="venue-location">New Kasama</div>
+
+          <div class="ornament">♡</div>
+        </div>
+
+        <div class="page-footer">
+          <button class="next-btn" type="button">NEXT&nbsp; →</button>
+        </div>
+      </section>
+
+      <!-- PAGE 4 -->
+      <section class="page" data-page="3" aria-label="RSVP">
+        <div class="wash top"></div>
+        <div class="wash bottom"></div>
+        <div class="flower top-right">🌹</div>
+        <div class="flower bottom-right">🌸</div>
+        <div class="leaf l2">❧</div>
+        <div class="leaf l4">❧</div>
+
+        <div class="content">
+          <div class="eyebrow">Kindly</div>
+          <div class="rsvp-heading">RSVP</div>
+
+          <div class="ornament">♡</div>
+
+          <p class="rsvp-copy">
+            Your presence will make the day even more special — let us know
+            you're coming by calling or messaging:
+          </p>
+
+          <div class="phone-list">
+            <div class="phone-row">
+              <div class="phone-icon" aria-hidden="true">☎</div>
+              <div>
+                <span class="phone-meta">RSVP line</span>
+                <span class="phone-number">0777 005 370</span>
+              </div>
+              <button class="copy-btn" type="button" data-copy="0777005370">COPY</button>
+            </div>
+
+            <div class="phone-row">
+              <div class="phone-icon" aria-hidden="true">☎</div>
+              <div>
+                <span class="phone-meta">RSVP line</span>
+                <span class="phone-number">+260 976 532 982</span>
+              </div>
+              <button class="copy-btn" type="button" data-copy="+260976532982">COPY</button>
+            </div>
+          </div>
+
+          <div class="ornament">♡</div>
+
+          <div class="online-note">
+            Can't call?<br>
+            RSVP online instead:
+          </div>
+
+          <a
+            class="online-btn"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeaEP9ZFUWH4zzU8LJqW36fPW30AqpWXhSxcfX3S8BjaTZSCg/viewform?usp=dialog"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ↗ &nbsp; RSVP ONLINE
+          </a>
+
+          <div class="closing">We can't wait to celebrate with you.</div>
+        </div>
+
+        <div class="page-footer">
+          <button class="next-btn" type="button">NEXT&nbsp; →</button>
+        </div>
+      </section>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const pages = Array.from(document.querySelectorAll(".page"));
+      const dots = Array.from(document.querySelectorAll(".dot"));
+      const nextButtons = Array.from(document.querySelectorAll(".next-btn"));
+      const toast = document.getElementById("toast");
+
+      let currentPage = 0;
+
+      function showPage(nextPage) {
+        if (nextPage < 0) nextPage = 0;
+        if (nextPage >= pages.length) nextPage = 0;
+
+        pages.forEach((page, index) => {
+          page.classList.toggle("active", index === nextPage);
+          page.classList.toggle("previous", index < nextPage);
+        });
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === nextPage);
+        });
+
+        currentPage = nextPage;
+      }
+
+      nextButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          showPage(currentPage + 1);
+        });
+      });
+
+      // Live countdown to Sunday, 25 October 2026.
+      // The target is interpreted using the visitor's local time.
+      const target = new Date(2026, 9, 25, 0, 0, 0);
+
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+
+      function updateCountdown() {
+        const now = new Date();
+        let difference = target.getTime() - now.getTime();
+
+        if (difference < 0) difference = 0;
+
+        const totalSeconds = Math.floor(difference / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        daysEl.textContent = String(days);
+        hoursEl.textContent = String(hours).padStart(2, "0");
+        minutesEl.textContent = String(minutes).padStart(2, "0");
+        secondsEl.textContent = String(seconds).padStart(2, "0");
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+
+        window.clearTimeout(showToast.timer);
+        showToast.timer = window.setTimeout(() => {
+          toast.classList.remove("show");
+        }, 1800);
+      }
+
+      document.querySelectorAll(".copy-btn").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const number = button.getAttribute("data-copy");
+
+          try {
+            if (navigator.clipboard && window.isSecureContext) {
+              await navigator.clipboard.writeText(number);
+              showToast("Number copied");
+            } else {
+              const input = document.createElement("input");
+              input.value = number;
+              input.setAttribute("readonly", "");
+              input.style.position = "absolute";
+              input.style.left = "-9999px";
+              document.body.appendChild(input);
+              input.select();
+              document.execCommand("copy");
+              input.remove();
+              showToast("Number copied");
+            }
+          } catch (error) {
+            showToast("Please copy the number manually");
+          }
+        });
+      });
+
+      // Keyboard navigation for desktop.
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight" || event.key === "Enter") {
+          showPage(currentPage + 1);
+        }
+
+        if (event.key === "ArrowLeft") {
+          showPage(currentPage - 1);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
