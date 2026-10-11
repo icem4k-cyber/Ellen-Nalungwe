@@ -625,6 +625,68 @@
       color: #352725;
     }
 
+    /* Gifts & colour theme */
+    .details-panel {
+      width: 100%;
+      max-width: 390px;
+      margin: 22px auto 0;
+      padding: 22px 18px;
+      border: 1px solid rgba(180, 122, 36, .32);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .72);
+      box-shadow: 0 12px 28px rgba(100, 54, 45, .07);
+      text-align: left;
+    }
+
+    .detail-heading {
+      color: var(--rose-dark);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .detail-copy {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 21px;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .colour-swatches {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 18px 0 10px;
+    }
+
+    .colour-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      min-width: 62px;
+      color: var(--text);
+      font-family: "Montserrat", sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .colour-swatch {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, .95);
+      box-shadow: 0 0 0 1px rgba(48, 35, 34, .12);
+    }
+
+    .swatch-magenta { background: #c21870; }
+    .swatch-purple { background: #7040a1; }
+    .swatch-mint { background: #a8d8c5; }
+    .swatch-gold { background: #c99a2e; }
+
     /* Venue */
     .venue-image {
       width: min(100%, 350px);
@@ -951,6 +1013,7 @@
         <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot"></span>
+        <span class="dot"></span>
       </div>
 
       <!-- PAGE 1 -->
@@ -1078,7 +1141,44 @@
       </section>
 
       <!-- PAGE 4 -->
-      <section class="page" data-page="3" aria-label="RSVP">
+      <section class="page" data-page="3" aria-label="Gifts and colour theme">
+        <div class="wash top"></div>
+        <div class="wash bottom"></div>
+        <div class="flower top-left">🌸</div>
+        <div class="flower bottom-right">🌹</div>
+        <div class="leaf l2">❧</div>
+        <div class="leaf l3">❧</div>
+
+        <div class="content">
+          <div class="eyebrow">A LITTLE NOTE</div>
+          <div class="section-title">GIFTS &amp;<br>COLOUR THEME</div>
+          <div class="ornament">♡</div>
+
+          <div class="details-panel">
+            <div class="detail-heading">Gifts</div>
+            <p class="detail-copy">Gifts are requested in monetary form<br><strong>K500 and above</strong></p>
+
+            <div class="ornament">✦</div>
+
+            <div class="detail-heading">Colour Theme</div>
+            <p class="detail-copy">Magenta, purple, mint green and gold</p>
+            <div class="colour-swatches" aria-label="Colour theme swatches">
+              <div class="colour-item"><span class="colour-swatch swatch-magenta"></span><span>Magenta</span></div>
+              <div class="colour-item"><span class="colour-swatch swatch-purple"></span><span>Purple</span></div>
+              <div class="colour-item"><span class="colour-swatch swatch-mint"></span><span>Mint green</span></div>
+              <div class="colour-item"><span class="colour-swatch swatch-gold"></span><span>Gold</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-footer">
+          <button class="nav-btn back-btn" type="button">← BACK</button>
+          <button class="nav-btn next-btn" type="button">NEXT →</button>
+        </div>
+      </section>
+
+      <!-- PAGE 5 -->
+      <section class="page" data-page="4" aria-label="RSVP">
         <div class="wash top"></div>
         <div class="wash bottom"></div>
         <div class="flower top-right">🌹</div>
